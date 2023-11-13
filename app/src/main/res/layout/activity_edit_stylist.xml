@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:paddingHorizontal="20dp"
+    tools:context=".Activity.EditStylist">
+
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        >
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="30dp"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserratbold"
+                android:text="Stylist Information"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="All fields are required"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                />
+
+            <!--            Email Section-->
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:hint="Upload Photo"
+                    android:textColorHint="@color/info"
+                    android:outlineSpotShadowColor="@color/primary"
+                    android:outlineAmbientShadowColor="@color/primary"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <!--First Name Section-->
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:hint="Stylist Name"
+                    android:textColorHint="@color/info"
+
+                    android:outlineSpotShadowColor="@color/primary"
+                    android:outlineAmbientShadowColor="@color/primary"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <!--            Last name-->
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:hint="Specialization"
+                    android:textColorHint="@color/info"
+
+                    android:outlineSpotShadowColor="@color/primary"
+                    android:outlineAmbientShadowColor="@color/primary"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <!--Contact Number-->
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:hint="Experience"
+                    android:textColorHint="@color/info"
+
+                    android:outlineSpotShadowColor="@color/primary"
+                    android:outlineAmbientShadowColor="@color/primary"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtContactNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <!--Address-->
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:hint="About Stylist"
+                    android:textColorHint="@color/info"
+
+                    android:outlineSpotShadowColor="@color/primary"
+                    android:outlineAmbientShadowColor="@color/primary"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <!--Password-->
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:hint="Password"
+                    android:textColorHint="@color/info"
+
+                    android:outlineSpotShadowColor="@color/primary"
+                    android:outlineAmbientShadowColor="@color/primary"
+                    >
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+
+
+
+            <!--            Sign in -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+                android:padding="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratsemibold"
+                android:stateListAnimator="@null"
+                android:text="SAVE"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                app:backgroundTint="@color/primary"
+                app:cornerRadius="12dp"
+                app:rippleColor="@color/primary"
+                app:strokeColor="@color/primary"
+                app:strokeWidth="1dp" />
+
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        style="?android:attr/progressBarStyleLarge" />
+
+
+</RelativeLayout>

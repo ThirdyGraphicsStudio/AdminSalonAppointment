@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Active date selection state -->
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="#FF0000FF" /> <!-- Blue color for the selected state -->
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+    <!-- Default date cell state -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent" /> <!-- Transparent for default state -->
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+</selector>

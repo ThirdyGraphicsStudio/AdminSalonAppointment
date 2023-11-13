@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    tools:context=".Activity.StylistDetails">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+<!--        Header-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="@color/surface"
+            >
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/back"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stylist Details"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserratbold"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                />
+
+
+
+        </RelativeLayout>
+
+        <!--    Scrollview-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/christian"
+                android:scaleType="fitXY"
+                app:shapeAppearance="?attr/actionButtonStyle"
+                app:shapeAppearanceOverlay="@style/imageViewRounded"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="7dp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratsemibold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:text="Gigi Salamanca"
+                android:layout_gravity="center"
+                />
+
+            <!--     3 cards-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/rounded_background_highlight"
+                    android:paddingVertical="20dp"
+                    android:layout_marginHorizontal="7dp"
+                    android:paddingHorizontal="15dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:text="Patients"
+                        android:layout_gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/monserratregular"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="123"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/rounded_background_highlight"
+                    android:paddingVertical="20dp"
+                    android:layout_marginHorizontal="7dp"
+                    android:paddingHorizontal="15dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:text="Experiences"
+                        android:layout_gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/monserratregular"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="10 years"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/rounded_background_highlight"
+                    android:paddingVertical="20dp"
+                    android:layout_marginHorizontal="7dp"
+                    android:paddingHorizontal="15dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:text="Rating"
+                        android:layout_gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/monserratregular"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="4.0"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--        Description-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:textColor="@color/navy"
+                    android:textSize="16sp"
+                    android:text="About Stylist"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/monserratregular"
+                    android:textColor="@color/navy"
+                    android:textSize="12sp"
+                    android:text="I am a Hair Stylist"
+                    android:layout_marginTop="20dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+    <!--            Sign in -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAppointment"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+        android:padding="14dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserratsemibold"
+        android:stateListAnimator="@null"
+        android:text="Edit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:backgroundTint="@color/primary"
+        app:cornerRadius="12dp"
+        app:rippleColor="@color/secondary"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="1dp" />
+
+
+</RelativeLayout>

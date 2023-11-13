@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "549262373959",
+    "project_id": "layers-salon-appointment-app",
+    "storage_bucket": "layers-salon-appointment-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549262373959:android:cd7b95da0d69eb4826ad62",
+        "android_client_info": {
+          "package_name": "com.ninebythree.adminsalonappointment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0-G4fG4_bmoMhhAbZ3NGmoRKP3vXUC7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549262373959:android:9350694631ac7e9526ad62",
+        "android_client_info": {
+          "package_name": "com.steven.appointment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0-G4fG4_bmoMhhAbZ3NGmoRKP3vXUC7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
