@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ninebythree.adminsalonappointment.Model.ScheduleModel;
 import com.ninebythree.adminsalonappointment.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,11 +40,14 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
     @Override
     public void onBindViewHolder(@NonNull StylistViewHolder holder, int position) {
 
-        holder.imgProfile.setImageResource(scheduleModels.get(position).getImage());
         holder.txtName.setText(scheduleModels.get(position).getName());
         holder.txtSpecialty.setText(scheduleModels.get(position).getSpecialty());
         holder.txtDate.setText(scheduleModels.get(position).getDate());
         holder.txtTime.setText(scheduleModels.get(position).getTime());
+        holder.txtClientName.setText("Client Name: " + scheduleModels.get(position).getClientName());
+        holder.txtClientAddress.setText("Client Address: " + scheduleModels.get(position).getClientAddress());
+
+        Picasso.get().load(scheduleModels.get(position).getImage()).placeholder(R.drawable.profile).error(R.drawable.profile).into(holder.imgProfile);
 
         if(scheduleModels.get(position).getStatus().equals("upcoming")){
             holder.btnCancel.setVisibility(View.VISIBLE);
@@ -54,6 +59,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
             holder.btnCancel.setOnClickListener(view -> {
                 // Update the status in your model
                 scheduleModels.get(position).setStatus("cancelled");
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("Appointments").document(scheduleModels.get(position).getId()).update("status", "cancelled");
                 // Update the button UI
                 holder.btnCancel.setText("CANCELLED");
                 holder.btnCancel.setEnabled(false);
@@ -64,6 +71,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
                 // to be reflected, like updating positions of subsequent items in the RecyclerView
                 notifyItemRangeChanged(position, scheduleModels.size());
             });
+
+
 
 
         } else if(scheduleModels.get(position).getStatus().equals("complete")){
@@ -87,7 +96,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
 
     public class StylistViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgProfile;
-        TextView txtName, txtSpecialty, txtDate, txtTime;
+        TextView txtName, txtSpecialty, txtDate, txtTime, txtClientName, txtClientAddress;
         MaterialButton btnCancel;
 
         public StylistViewHolder(@NonNull View itemView, MyInterface myInterfaces) {
@@ -99,6 +108,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
             txtDate = itemView.findViewById(R.id.txtDate);
             txtTime = itemView.findViewById(R.id.txtTime);
             btnCancel = itemView.findViewById(R.id.btnCancel);
+            txtClientName = itemView.findViewById(R.id.txtClientName);
+            txtClientAddress = itemView.findViewById(R.id.txtClientAddress);
 
             itemView.setOnClickListener(this);
         }

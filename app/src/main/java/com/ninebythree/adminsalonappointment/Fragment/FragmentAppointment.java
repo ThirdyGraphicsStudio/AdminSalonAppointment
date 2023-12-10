@@ -2,6 +2,7 @@ package com.ninebythree.adminsalonappointment.Fragment;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.ninebythree.adminsalonappointment.Adapter.MyInterface;
 import com.ninebythree.adminsalonappointment.Adapter.ScheduleAdapter;
 import com.ninebythree.adminsalonappointment.Model.ScheduleModel;
 import com.ninebythree.adminsalonappointment.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FragmentAppointment extends Fragment implements MyInterface {
     View view;
@@ -43,10 +49,11 @@ public class FragmentAppointment extends Fragment implements MyInterface {
         scheduleAdapter = new ScheduleAdapter(filter, getContext(), this);
 
         //Set Up Data
+        filter("upcoming");
+
         Data();
 
         //current data
-        filter("upcoming");
 
         // Set onClickListeners for each button
         btnUpcoming.setOnClickListener(view1 -> {
@@ -86,11 +93,45 @@ public class FragmentAppointment extends Fragment implements MyInterface {
     }
 
     private void Data() {
-        scheduleModelList.add(new ScheduleModel(R.drawable.christian, "Christian Baustista", "Hair Cut", "Nov 20, 2021", "10:00 PM", "upcoming"));
-        scheduleModelList.add(new ScheduleModel(R.drawable.angelika, "Angelika Panganiban", "Hair Rebond", "Jun 20, 2021", "8:00 AM", "complete"));
-        scheduleModelList.add(new ScheduleModel(R.drawable.anna, "Anna Dela Cruz", "Hair Rebond", "Jan 16, 2021", "9:00 AM", "complete"));
-        scheduleModelList.add(new ScheduleModel(R.drawable.gigi, "Gigi Delos Santos", "Nail Polish", "Aug 2, 2021", "10:00 AM", "upcoming"));
-        scheduleModelList.add(new ScheduleModel(R.drawable.mark, "Mark Delos Reyes", "Hair Cut", "June 10, 2021", "11:00 AM", "cancelled"));
+//        scheduleModelList.add(new ScheduleModel(R.drawable.christian, "Christian Baustista", "Hair Cut", "Nov 20, 2021", "10:00 PM", "upcoming"));
+//        scheduleModelList.add(new ScheduleModel(R.drawable.angelika, "Angelika Panganiban", "Hair Rebond", "Jun 20, 2021", "8:00 AM", "complete"));
+//        scheduleModelList.add(new ScheduleModel(R.drawable.anna, "Anna Dela Cruz", "Hair Rebond", "Jan 16, 2021", "9:00 AM", "complete"));
+//        scheduleModelList.add(new ScheduleModel(R.drawable.gigi, "Gigi Delos Santos", "Nail Polish", "Aug 2, 2021", "10:00 AM", "upcoming"));
+//        scheduleModelList.add(new ScheduleModel(R.drawable.mark, "Mark Delos Reyes", "Hair Cut", "June 10, 2021", "11:00 AM", "cancelled"));
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        CollectionReference appointmentsRef = db.collection("Appointments");
+
+// Fetch all documents within the Appointments subcollection
+        appointmentsRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    // Assuming that you have a ScheduleModel class with a constructor that matches the document data structure
+                    String stylistName = document.getString("stylistName");
+                    String stylistSpecialization = document.getString("stylistSpecialization");
+                    String date = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault()).format(document.getDate("date"));
+                    String time = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(document.getDate("date"));
+                    String status = document.getString("status");
+                    String stylistImage = document.getString("stylistImage");
+                    String clientName = document.getString("name");
+                    String clientAdress = document.getString("address");
+
+
+                    scheduleModelList.add(new ScheduleModel(document.getId().toString(),stylistImage, stylistName, stylistSpecialization, date, time, status, clientName, clientAdress));
+                }
+                filter("upcoming");
+
+
+                scheduleAdapter.notifyDataSetChanged();
+
+
+
+            } else {
+                // Handle the error
+                Log.e("Firestore", "Error getting documents: ", task.getException());
+            }
+        });
+
     }
 
 
