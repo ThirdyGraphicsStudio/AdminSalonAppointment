@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserratbold"
-                android:text="Edit Stylist Information"
+                android:text="Stylist Information"
                 android:textColor="@color/black"
                 />
 

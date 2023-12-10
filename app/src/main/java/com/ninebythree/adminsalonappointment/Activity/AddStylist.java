@@ -27,7 +27,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ninebythree.adminsalonappointment.MainActivity;
 import com.ninebythree.adminsalonappointment.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +34,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditStylist extends AppCompatActivity {
+public class AddStylist extends AppCompatActivity {
 
     private TextView btnUpload;
     private ImageView imgProfile;
@@ -45,11 +44,10 @@ public class EditStylist extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private Uri selectedImage = null;
     private ProgressBar progressBar;
-    String stylistName, specialization, experience, description, image, id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_stylist);
+        setContentView(R.layout.activity_add_stylist);
 
         btnUpload = findViewById(R.id.btnUpload);
         imgProfile = findViewById(R.id.imgProfile);
@@ -62,102 +60,8 @@ public class EditStylist extends AppCompatActivity {
 
         btnUpload.setOnClickListener(v -> pickImage());
 
-        btnSave.setOnClickListener(view ->   editStylist());
-
-        Intent intent = getIntent();
-        if (intent != null) {
-
-            stylistName = intent.getStringExtra("name");
-            specialization = intent.getStringExtra("specialization");
-            experience = intent.getStringExtra("experience");
-            description = intent.getStringExtra("description");
-            image = intent.getStringExtra("image");
-            id = intent.getStringExtra("id");
-
-            edtStylistName.setText(stylistName);
-            edtSpecialization.setText(specialization);
-            edtExperience.setText(experience);
-            editStylist.setText(description);
-
-
-            Picasso.get().load(image).placeholder(R.drawable.profile).into(imgProfile);
-        }
-
+        btnSave.setOnClickListener(view -> saveStylist());
     }
-
-    private void editStylist() {
-        String newStylistName = edtStylistName.getText().toString().trim();
-        String newSpecialization = edtSpecialization.getText().toString().trim();
-        String newExperience = edtExperience.getText().toString().trim();
-        String newDescription = editStylist.getText().toString().trim();
-
-        Map<String, Object> updatedValues = new HashMap<>();
-        if (!stylistName.equals(newStylistName)) {
-            updatedValues.put("stylistName", newStylistName);
-        }
-        if (!specialization.equals(newSpecialization)) {
-            updatedValues.put("specialization", newSpecialization);
-        }
-        if (!experience.equals(newExperience)) {
-            updatedValues.put("experience", newExperience);
-        }
-        if (!description.equals(newDescription)) {
-            updatedValues.put("description", newDescription);
-        }
-
-        // If a new image was selected, upload it. Otherwise, update the Firestore document directly.
-        if (selectedImage != null) {
-            // Create a reference to the new image file
-            StorageReference reference = FirebaseStorage.getInstance().getReference()
-                    .child("stylist_images")
-                    .child(newStylistName + "_" + System.currentTimeMillis() + ".jpg");
-
-            // Upload the new image to Firebase Storage
-            reference.putFile(selectedImage).addOnSuccessListener(taskSnapshot -> {
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isSuccessful());
-                Uri downloadUri = uriTask.getResult();
-
-                // Add the new image URL to the update map
-                updatedValues.put("image", downloadUri.toString());
-
-                // Update Firestore document
-                updateFirestoreDocument(updatedValues);
-            }).addOnFailureListener(e -> {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(EditStylist.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
-            }).addOnProgressListener(snapshot -> {
-                double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                progressBar.setProgress((int) progress);
-            });
-        } else {
-            // If no new image was selected, just update the document
-            updateFirestoreDocument(updatedValues);
-        }
-    }
-
-    private void updateFirestoreDocument(Map<String, Object> updatedValues) {
-        if (!updatedValues.isEmpty()) {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference stylistDetailsRef = db.collection("stylists").document(id);
-
-            stylistDetailsRef.update(updatedValues)
-                    .addOnSuccessListener(aVoid -> {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(EditStylist.this, "Stylist updated successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
-                    })
-                    .addOnFailureListener(e -> {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(EditStylist.this, "Failed to update stylist", Toast.LENGTH_SHORT).show();
-                    });
-        } else {
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(this, "No changes to update", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     private void saveStylist() {
         String stylistName = edtStylistName.getText().toString().trim();
@@ -233,28 +137,28 @@ public class EditStylist extends AppCompatActivity {
 
 //                stylistDetails.add(newStylistModel);
 
-            stylistDetailsRef.add(newStylistModel)
-                    .addOnSuccessListener(aVoid -> {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(EditStylist.this, "Stylist added successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
-                    })
-                    .addOnFailureListener(e -> {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(EditStylist.this, "Failed to add stylist", Toast.LENGTH_SHORT).show();
-                        Log.d("TAG", "onFailure: " + e.toString());
-                    });
-        }).addOnFailureListener(e -> {
-            // Handle the error
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(EditStylist.this, "Failed to add stylist", Toast.LENGTH_SHORT).show();
-            Log.d("TAG", "onFailure: " + e.toString());
-        }).addOnProgressListener(snapshot -> {
-            // Observe state change events such as progress, pause, and resume
-            // ...
-            progressBar.setVisibility(View.VISIBLE);
-        });
+                stylistDetailsRef.add(newStylistModel)
+                        .addOnSuccessListener(aVoid -> {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(AddStylist.this, "Stylist added successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        })
+                        .addOnFailureListener(e -> {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(AddStylist.this, "Failed to add stylist", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "onFailure: " + e.toString());
+                        });
+            }).addOnFailureListener(e -> {
+                // Handle the error
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(AddStylist.this, "Failed to add stylist", Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "onFailure: " + e.toString());
+            }).addOnProgressListener(snapshot -> {
+                // Observe state change events such as progress, pause, and resume
+                // ...
+                progressBar.setVisibility(View.VISIBLE);
+            });
 
     }
 
@@ -290,7 +194,7 @@ public class EditStylist extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
-            selectedImage = data.getData();
+             selectedImage = data.getData();
             imgProfile.setImageURI(selectedImage);
         }
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ninebythree.adminsalonappointment.Model.StylistModel;
 import com.ninebythree.adminsalonappointment.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,11 +40,12 @@ public class StylistAdapter extends RecyclerView.Adapter<StylistAdapter.StylistV
     public void onBindViewHolder(@NonNull StylistViewHolder holder, int position) {
         StylistModel stylist = stylistList.get(position);
 
-        holder.imageView.setImageResource(stylist.getImageResource());
         holder.nameTextView.setText(stylist.getName());
         holder.specialtyTextView.setText(stylist.getSpecialty());
         holder.ratingTextView.setText(String.valueOf(stylist.getAverageRating()));
         holder.reviewsTextView.setText(String.format("Reviews (%d)", stylist.getReviews()));
+
+        Picasso.get().load(stylist.getImageResource()).placeholder(R.drawable.profile).error(R.drawable.profile).into(holder.imageView);
     }
 
     @Override
