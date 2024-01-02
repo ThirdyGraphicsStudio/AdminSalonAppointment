@@ -17,6 +17,9 @@
         android:theme="@style/Theme.AdminSalonAppointment"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.ViewPayment"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AddStylist"
             android:exported="false" />
         <activity

@@ -1,12 +1,13 @@
 package com.ninebythree.adminsalonappointment.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import  com.ninebythree.adminsalonappointment.Activity.ViewPayment;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -85,6 +86,22 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
             holder.btnCancel.setEnabled(false);
         }
 
+        holder.btnViewScreenshot.setVisibility(View.GONE);
+
+        if (scheduleModels.get(position).getGcashImage()!= null){
+            holder.btnViewScreenshot.setVisibility(View.VISIBLE);
+        }
+
+        holder.btnViewScreenshot.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ViewPayment.class);
+            intent.putExtra("image", scheduleModels.get(position).getGcashImage().toString());
+            context.startActivity(intent);
+        });
+
+
+        if(scheduleModels.get(position).getPaymentMethod() != null && scheduleModels.get(position).getPaymentMethod().equals("Gcash")){
+            holder.txtPaymentMethod.setText("Gcash Payment");
+        }
 
 
     }
@@ -96,8 +113,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
 
     public class StylistViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgProfile;
-        TextView txtName, txtSpecialty, txtDate, txtTime, txtClientName, txtClientAddress;
-        MaterialButton btnCancel;
+        TextView txtName, txtSpecialty, txtDate, txtTime, txtClientName, txtClientAddress,txtPaymentMethod;
+        MaterialButton btnCancel,btnViewScreenshot;
 
         public StylistViewHolder(@NonNull View itemView, MyInterface myInterfaces) {
             super(itemView);
@@ -110,7 +127,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Stylis
             btnCancel = itemView.findViewById(R.id.btnCancel);
             txtClientName = itemView.findViewById(R.id.txtClientName);
             txtClientAddress = itemView.findViewById(R.id.txtClientAddress);
-
+            txtPaymentMethod = itemView.findViewById(R.id.txtPaymentMethod);
+            btnViewScreenshot = itemView.findViewById(R.id.btnViewScreenshot);
             itemView.setOnClickListener(this);
         }
 

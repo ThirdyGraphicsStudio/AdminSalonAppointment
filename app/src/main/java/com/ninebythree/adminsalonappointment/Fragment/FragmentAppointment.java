@@ -116,8 +116,16 @@ public class FragmentAppointment extends Fragment implements MyInterface {
                     String clientName = document.getString("name");
                     String clientAdress = document.getString("address");
 
+                    String paymentMethod = document.getString("paymentMethod");
+                    String screenshotUrl = null;
 
-                    scheduleModelList.add(new ScheduleModel(document.getId().toString(),stylistImage, stylistName, stylistSpecialization, date, time, status, clientName, clientAdress));
+                    // Check if the payment method is Gcash and fetch the screenshot URL if it is
+                    if ("Gcash".equals(paymentMethod)) {
+                        screenshotUrl = document.getString("screenshot");
+                    }
+
+
+                    scheduleModelList.add(new ScheduleModel(document.getId().toString(),stylistImage, stylistName, stylistSpecialization, date, time, status, clientName, clientAdress, paymentMethod, screenshotUrl));
                 }
                 filter("upcoming");
 

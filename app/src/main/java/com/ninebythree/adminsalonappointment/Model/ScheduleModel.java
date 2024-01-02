@@ -11,6 +11,8 @@ public class ScheduleModel {
     String clientName;
     String clientAddress;
 
+    String paymentMethod;
+    String gcashImage;
 
     public ScheduleModel(String id,String image, String name, String specialty, String date, String time, String status, String clientName, String clientAddress) {
         this.id = id;
@@ -23,6 +25,28 @@ public class ScheduleModel {
         this.clientName = clientName;
         this.clientAddress = clientAddress;
 
+    }
+
+    public ScheduleModel(String id, String image, String name, String specialty, String date, String time, String status, String clientName, String clientAddress, String paymentMethod, String gcashImage) {
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.specialty = specialty;
+        this.date = date;
+        this.time = time;
+        this.status = status;
+        this.clientName = clientName;
+        this.clientAddress = clientAddress;
+        this.paymentMethod = paymentMethod;
+        this.gcashImage = gcashImage;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public String getGcashImage() {
+        return gcashImage;
     }
 
     public String getId() {
