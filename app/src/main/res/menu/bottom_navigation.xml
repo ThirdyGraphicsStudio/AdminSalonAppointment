@@ -18,6 +18,11 @@
         android:title="Appointment" />
 
     <item
+        android:id="@+id/nav_users"
+        android:icon="@drawable/profile_with_circle"
+        android:title="Users" />
+
+    <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/profile"
         android:title="Profile" />

@@ -12,6 +12,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.ninebythree.adminsalonappointment.Fragment.FragmentAppointment;
 import com.ninebythree.adminsalonappointment.Fragment.FragmentHome;
 import com.ninebythree.adminsalonappointment.Fragment.FragmentProfile;
+import com.ninebythree.adminsalonappointment.Fragment.FragmentUser;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new FragmentAppointment();
                 } else if (itemId == R.id.nav_profile) {
                     selectedFragment = new FragmentProfile();
+                }  else if (itemId == R.id.nav_users) {
+                    selectedFragment = new FragmentUser();
                 }  else {
                     // Handle other cases or provide a default behavior
                     selectedFragment = new FragmentHome();

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/white"
+    android:outlineSpotShadowColor="@color/primary"
+    android:outlineAmbientShadowColor="@color/primary"
+    android:layout_marginVertical="2dp"
+    app:cardCornerRadius="10dp"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+
+    <RelativeLayout
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Angela Kang"
+                android:fontFamily="@font/montserratsemibold"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/txtNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09237823"
+                android:fontFamily="@font/montserratmedium"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="gayaresthird@gmail.com"
+                android:layout_marginTop="5dp"
+
+                android:fontFamily="@font/montserratmedium"
+                android:textSize="10sp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/txtAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pasig San Joaquin"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/montserratmedium"
+                android:textSize="10sp"
+                android:textColor="@color/black"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
